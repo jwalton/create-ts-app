@@ -76,16 +76,16 @@ async function main() {
         inquirer
     );
 
-    const { githubOwner, githubName, description, keywords, authorName, authorEmail, authorUrl } =
+    const { repoOwner, repoName, description, keywords, authorName, authorEmail, authorUrl } =
         await inquirer.prompt([
             {
                 type: 'input',
-                name: 'githubOwner',
+                name: 'repoOwner',
                 message: 'Github user name/org name',
             },
             {
                 type: 'input',
-                name: 'githubName',
+                name: 'repoName',
                 message: 'Github project name',
                 default: npmName,
             },
@@ -118,16 +118,17 @@ async function main() {
             },
         ]);
 
+    let cwd = process.cwd();
     if (defaultProjectName !== npmName) {
-        const cwd = path.join(process.cwd(), npmName);
+        cwd = path.join(process.cwd(), npmName);
         await fs.mkdir(cwd, { recursive: true });
-        process.chdir(cwd);
     }
+    process.chdir(cwd);
 
     console.log('Initializing git...');
-    await git.init();
-    if (githubOwner && githubName) {
-        await git.addRemote(githubOwner, githubName);
+    await git.init(cwd);
+    if (repoOwner && repoName) {
+        await git.addRemote(cwd, repoOwner, repoName);
     }
 
     // Write package.json
@@ -136,8 +137,8 @@ async function main() {
         name: npmName,
         description,
         keywords,
-        githubOwner,
-        githubName,
+        repoOwner,
+        repoName,
         author: {
             name: authorName,
             email: authorEmail,
@@ -148,7 +149,14 @@ async function main() {
 
     // Copy template files
     console.log('Copying template files...');
-    await copyTemplateFiles(path.join(__dirname, '..', 'template'), process.cwd());
+    const templates = await copyTemplateFiles(
+        path.join(__dirname, '..', 'template'),
+        process.cwd(),
+        {
+            rename: { gitignore: '.gitignore' },
+        }
+    );
+    console.log(`Wrote template files:\n${templates.map((t) => `  ${t}`).join('\n')}`);
 
     // Install dependencies.
     console.log(`Installing ${DEPENDENCIES.join(', ')}`);

@@ -3,17 +3,23 @@ import { promisify } from 'node:util';
 
 const execFile = promisify(childProcess.execFile);
 
-export async function init(): Promise<void> {
-    await execFile('git', ['init']);
+/** Initialize a git folder. */
+export async function init(folder: string): Promise<void> {
+    await execFile('git', ['init'], { cwd: folder });
 }
 
-export async function addRemote(githubOwner: string, githubName: string) {
-    await execFile('git', [
-        'remote',
-        'add',
-        'origin',
-        `git@github.com:${githubOwner}/${githubName}.git`,
-    ]);
+/** Add a remote to the specified git folder. */
+export async function addRemote(folder: string, repoOwner: string, repoName: string) {
+    try {
+        // If this succeeds, there's already a remote for `origin`.
+        await execFile('git', ['config', 'remote.origin.url'], { cwd: folder });
+    } catch {
+        await execFile(
+            'git',
+            ['remote', 'add', 'origin', `git@github.com:${repoOwner}/${repoName}.git`],
+            { cwd: folder }
+        );
+    }
 }
 
 export async function getUserName(): Promise<string | undefined> {

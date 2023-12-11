@@ -7,8 +7,8 @@ export function generatePackageJson(params: {
     name: string;
     description: string;
     keywords?: string[];
-    githubOwner: string;
-    githubName: string;
+    repoOwner: string;
+    repoName: string;
     author: {
         name: string;
         email: string;
@@ -40,12 +40,13 @@ export function generatePackageJson(params: {
             'semantic-release': 'semantic-release',
         },
         'lint-staged': {
-            '**/*.ts': ['prettier --write', 'eslint --ext ts --ext tsx'],
+            '**/*.@(ts|tsx)}': ['prettier --write', 'eslint --ext ts --ext tsx'],
+            '**/*.@(js|cjs|mjs|jsx)}': ['prettier --write'],
         },
     };
 
-    if (params.githubOwner && params.githubName) {
-        const repo = `${params.githubOwner}/${params.githubName}`;
+    if (params.repoOwner && params.repoName) {
+        const repo = `${params.repoOwner}/${params.repoName}`;
         packageJson.repository = {
             type: 'git',
             url: `git+https://github.com/${repo}.git`,
