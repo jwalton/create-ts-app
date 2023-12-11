@@ -62,19 +62,25 @@ async function parseOptions() {
     return { project: project[0] || undefined };
 }
 
+async function getProjectName(defaultProjectName: string) {
+    const { npmName } = await askNpmName(
+        {
+            name: 'npmName',
+            message: 'Your project npm name',
+            default: defaultProjectName,
+        },
+        inquirer
+    );
+
+    return npmName;
+}
+
 async function main() {
     const options = await parseOptions();
 
     const defaultProjectName = path.basename(process.cwd());
 
-    const { npmName } = await askNpmName(
-        {
-            name: 'npmName',
-            message: 'Your project npm name',
-            default: options.project ?? _.kebabCase(defaultProjectName),
-        },
-        inquirer
-    );
+    const npmName = options.project || (await getProjectName(_.kebabCase(defaultProjectName)));
 
     const { repoOwner, repoName, description, keywords, authorName, authorEmail, authorUrl } =
         await inquirer.prompt([
