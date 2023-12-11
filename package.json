@@ -14,7 +14,8 @@
   },
   "type": "module",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "template/**/*"
   ],
   "scripts": {
     "start": "npm run build && node dist/index.js",
