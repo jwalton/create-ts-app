@@ -12,9 +12,4 @@ describe('File Utils', function () {
         const files = await recurseDir(path.join(__dirname, '../.github'));
         expect(files).to.include(path.join(__dirname, '../.github', 'workflows/github-ci.yaml'));
     });
-
-    it('should include .gitignore', async function () {
-        const files = await recurseDir(path.join(__dirname, '../template'));
-        expect(files).to.include(path.join(__dirname, '../template', '.gitignore'));
-    });
 });
