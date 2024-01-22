@@ -1,5 +1,7 @@
 module.exports = {
-    extension: ['js', 'jsx', 'ts', 'tsx'],
+    extension: ['.spec.ts', '.spec.tsx'],
     loader: 'ts-node/esm',
     reporter: 'spec',
-};
+    recursive: true,
+    spec: ['src'],
+  };

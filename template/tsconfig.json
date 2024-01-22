@@ -2,7 +2,7 @@
     "compilerOptions": {
         /* Basic Options */
         "target": "es2021",
-        "module": "es6",
+        "module": "ESNext",
         "lib": ["es2021"],
         "allowJs": false,
         // "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
@@ -52,8 +52,7 @@
         // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
         // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
     },
-    "include": [
-        "./src/**/*"
-    ],
+    "include": ["src"],
+    "exclude": ["**/*.spec.ts"],
     "compileOnSave": true
 }
