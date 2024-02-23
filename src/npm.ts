@@ -34,7 +34,7 @@ export function generatePackageJson(params: {
             'test:unittest': "nyc mocha 'src/**/*.spec.@(ts|tsx|js|jsx)'",
             lint: 'npm run lint:source && npm run lint:types',
             'lint:source': 'eslint --ext .ts --ext .tsx src',
-            'lint:types': 'tsc --noEmit',
+            'lint:types': 'tsc --noEmit && tsc -p tsconfig.test.json --noEmit',
             prepare: 'husky install && npm run build',
             prepublishOnly: 'npm run build && npm test',
             'semantic-release': 'semantic-release',

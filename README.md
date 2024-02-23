@@ -9,10 +9,12 @@ Create a TS app.  Run with:
 npm init @jwalton/ts-app
 ```
 
-This creates a node.js application using Typescript and SWC.
+This creates a node.js application or ESM library using Typescript and SWC.
 
 - `type: "module"` for ESM support.
 - swc for compiling and running.
 - mocha for unit tests, nyc for code coverage.
 - husky and lint-staged for linting and prettifying code on commit.
 - ts-node for compiling code during unit tests.
+
+Any files that end in `.spec.ts` will be run as unit tests, and will not be included in the built output in `dist`.
