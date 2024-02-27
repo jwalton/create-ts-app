@@ -1,8 +1,6 @@
-import chai from 'chai';
+import { expect } from 'chai';
 import 'mocha';
 import { add } from './lib.js';
-
-const { expect } = chai;
 
 describe('Test Suite', function () {
     it('should add two numbers', function () {
