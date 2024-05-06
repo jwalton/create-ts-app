@@ -18,6 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEPENDENCIES = ['@swc/helpers'];
 
 const DEV_DEPENDENCIES = [
+    '@eslint/js',
     '@swc/cli',
     '@swc/core',
     '@types/chai',
@@ -25,9 +26,8 @@ const DEV_DEPENDENCIES = [
     '@types/mocha',
     '@types/node',
     '@types/sinon',
-    '@typescript-eslint/eslint-plugin',
     'chai',
-    'eslint-config-prettier',
+    'eslint',
     'eslint-plugin-import',
     'husky',
     'lint-staged',

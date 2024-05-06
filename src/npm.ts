@@ -15,7 +15,7 @@ export function generatePackageJson(params: {
         url?: string;
     };
 }): unknown {
-    const packageJson: any = {
+    const packageJson = {
         name: params.name,
         description: params.description,
         keywords: params.keywords,
@@ -26,21 +26,24 @@ export function generatePackageJson(params: {
         main: './dist/index.js',
         type: 'module',
         files: ['dist/**/*'],
+        repository: undefined as { type: string; url: string } | undefined,
+        bugs: undefined as { url: string } | undefined,
+        homepage: undefined as string | undefined,
         scripts: {
             start: 'npm run build && node dist/index.js',
             test: 'npm run build && npm run lint && npm run test:unittest',
-            build: "swc ./src -d dist --strip-leading-paths",
+            build: 'swc ./src -d dist --strip-leading-paths',
             clean: 'rm -rf dist types coverage',
             'test:unittest': "nyc mocha 'src/**/*.spec.@(ts|tsx|js|jsx)'",
             lint: 'npm run lint:source && npm run lint:types',
-            'lint:source': 'eslint --ext .ts --ext .tsx src',
+            'lint:source': 'eslint src',
             'lint:types': 'tsc --noEmit && tsc -p tsconfig.test.json --noEmit',
             prepare: 'husky || true && npm run build',
             prepublishOnly: 'npm run build && npm test',
             'semantic-release': 'semantic-release',
         },
         'lint-staged': {
-            '**/*.@(ts|tsx)}': ['prettier --write', 'eslint --ext ts --ext tsx'],
+            '**/*.@(ts|tsx)}': ['prettier --write', 'eslint'],
             '**/*.@(js|cjs|mjs|jsx)}': ['prettier --write'],
         },
     };

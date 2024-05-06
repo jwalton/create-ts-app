@@ -24,7 +24,7 @@
         "clean": "rm -rf dist types coverage",
         "test:unittest": "nyc mocha",
         "lint": "npm run lint:source && npm run lint:types",
-        "lint:source": "eslint --ext .ts --ext .tsx src",
+        "lint:source": "eslint src",
         "lint:types": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit",
         "prepare": "husky || true && npm run build",
         "prepublishOnly": "npm run build && npm test",
@@ -33,7 +33,7 @@
     "lint-staged": {
         "**/*.@(ts|tsx)}": [
             "prettier --write",
-            "eslint --ext ts --ext tsx"
+            "eslint"
         ],
         "**/*.@(js|cjs|mjs|jsx)}": [
             "prettier --write"
@@ -51,6 +51,7 @@
     },
     "homepage": "https://github.com/jwalton/create-ts-app#readme",
     "devDependencies": {
+        "@eslint/js": "^9.1.1",
         "@swc/cli": "^0.3.9",
         "@swc/core": "^1.4.2",
         "@types/chai": "^4.3.12",
@@ -61,10 +62,9 @@
         "@types/node": "^20.4.1",
         "@types/sinon": "^17.0.3",
         "@types/yargs": "^17.0.32",
-        "@typescript-eslint/eslint-plugin": "^7.1.0",
         "chai": "^5.1.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-import": "^2.27.5",
+        "eslint": "^8.44.0",
+        "eslint-plugin-import": "^2.26.0",
         "husky": "^9.0.11",
         "lint-staged": "^15.2.2",
         "mocha": "^10.3.0",
@@ -73,7 +73,7 @@
         "sinon": "^17.0.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.1.6",
-        "typescript-eslint": "^7.1.0"
+        "typescript-eslint": "^7.8.0"
     },
     "dependencies": {
         "inquirer": "^9.2.12",
