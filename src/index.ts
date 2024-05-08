@@ -32,7 +32,7 @@ const DEV_DEPENDENCIES = [
     'husky',
     'lint-staged',
     'mocha',
-    'nyc',
+    'c8',
     'prettier',
     'sinon',
     'ts-node',

@@ -13,7 +13,7 @@ This creates a node.js application or ESM library using Typescript and SWC.
 
 - `type: "module"` for ESM support.
 - swc for compiling and running.
-- mocha for unit tests, nyc for code coverage.
+- mocha for unit tests, c8 for code coverage.
 - husky and lint-staged for linting and prettifying code on commit.
 - ts-node for compiling code during unit tests.
 
