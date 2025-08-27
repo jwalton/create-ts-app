@@ -31,11 +31,11 @@
         "semantic-release": "semantic-release"
     },
     "lint-staged": {
-        "**/*.@(ts|tsx)}": [
+        "**/*.@(ts|tsx)": [
             "prettier --write",
             "eslint"
         ],
-        "**/*.@(js|cjs|mjs|jsx)}": [
+        "**/*.@(js|cjs|mjs|jsx)": [
             "prettier --write"
         ]
     },
@@ -47,7 +47,7 @@
         ""
     ],
     "bugs": {
-        "url": "https://github.com/exegesis-js/jwalton/create-ts-app/issues"
+        "url": "https://github.com/jwalton/create-ts-app/issues"
     },
     "homepage": "https://github.com/jwalton/create-ts-app#readme",
     "devDependencies": {

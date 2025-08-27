@@ -34,7 +34,7 @@ export function generatePackageJson(params: {
             test: 'npm run build && npm run lint && npm run test:unittest',
             build: 'swc ./src -d dist --strip-leading-paths',
             clean: 'rm -rf dist types coverage',
-            'test:unittest': "c8 mocha src",
+            'test:unittest': 'c8 mocha src',
             lint: 'npm run lint:source && npm run lint:types',
             'lint:source': 'eslint src',
             'lint:types': 'tsc --noEmit && tsc -p tsconfig.test.json --noEmit',
@@ -43,8 +43,8 @@ export function generatePackageJson(params: {
             'semantic-release': 'semantic-release',
         },
         'lint-staged': {
-            '**/*.@(ts|tsx)}': ['prettier --write', 'eslint'],
-            '**/*.@(js|cjs|mjs|jsx)}': ['prettier --write'],
+            '**/*.@(ts|tsx)': ['prettier --write', 'eslint'],
+            '**/*.@(js|cjs|mjs|jsx)': ['prettier --write'],
         },
     };
 
@@ -55,7 +55,7 @@ export function generatePackageJson(params: {
             url: `git+https://github.com/${repo}.git`,
         };
         packageJson.bugs = {
-            url: `https://github.com/exegesis-js/${repo}/issues`,
+            url: `https://github.com/${repo}/issues`,
         };
         packageJson.homepage = `https://github.com/${repo}#readme`;
     }
