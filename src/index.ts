@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import inquirer from 'inquirer';
+import inquirer, { Question } from 'inquirer';
 import askNpmName from 'inquirer-npm-name';
 import _ from 'lodash';
 import fs from 'node:fs/promises';
@@ -22,7 +22,6 @@ const DEV_DEPENDENCIES = [
     '@swc/cli',
     '@swc/core',
     '@types/chai',
-    '@types/express',
     '@types/mocha',
     '@types/node',
     '@types/sinon',
@@ -65,10 +64,11 @@ async function parseOptions() {
 async function getProjectName(defaultProjectName: string) {
     const { npmName } = await askNpmName(
         {
+            type: 'input',
             name: 'npmName',
             message: 'Your project npm name',
             default: defaultProjectName,
-        },
+        } satisfies Question,
         inquirer
     );
 
@@ -96,10 +96,12 @@ async function main() {
                 default: npmName,
             },
             {
+                type: 'input',
                 name: 'description',
                 message: 'Project description',
             },
             {
+                type: 'list',
                 name: 'keywords',
                 message: 'Package keywords (comma to split)',
                 filter(words: string) {
@@ -119,6 +121,7 @@ async function main() {
                 default: await git.getUserEmail(),
             },
             {
+                type: 'input',
                 name: 'authorUrl',
                 message: "Author's Homepage",
             },
