@@ -9,11 +9,7 @@ export function generatePackageJson(params: {
     keywords?: string[];
     repoOwner: string;
     repoName: string;
-    author: {
-        name: string;
-        email: string;
-        url?: string;
-    };
+    author: { name: string; email: string; url?: string };
 }): unknown {
     const packageJson = {
         name: params.name,
@@ -50,13 +46,8 @@ export function generatePackageJson(params: {
 
     if (params.repoOwner && params.repoName) {
         const repo = `${params.repoOwner}/${params.repoName}`;
-        packageJson.repository = {
-            type: 'git',
-            url: `git+https://github.com/${repo}.git`,
-        };
-        packageJson.bugs = {
-            url: `https://github.com/${repo}/issues`,
-        };
+        packageJson.repository = { type: 'git', url: `git+https://github.com/${repo}.git` };
+        packageJson.bugs = { url: `https://github.com/${repo}/issues` };
         packageJson.homepage = `https://github.com/${repo}#readme`;
     }
 
@@ -68,6 +59,7 @@ export async function installDeps(dependencies: string[], options: { dev?: boole
     if (options.dev) {
         args.push('--save-dev');
     }
+    args.push('--legacy-peer-deps');
 
     await execFile('npm', [...args, ...dependencies]);
 }
