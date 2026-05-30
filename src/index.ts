@@ -15,19 +15,16 @@ import { copyTemplateFiles } from './templateFiles.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const DEPENDENCIES = ['@swc/helpers'];
+const DEPENDENCIES: string[] = [];
 
 const DEV_DEPENDENCIES = [
     '@eslint/js',
-    '@swc/cli',
-    '@swc/core',
     '@types/chai',
     '@types/mocha',
     '@types/node',
     '@types/sinon',
     'chai',
     'eslint',
-    'eslint-plugin-import',
     'husky',
     'lint-staged',
     'mocha',

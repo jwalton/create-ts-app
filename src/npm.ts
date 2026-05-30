@@ -28,7 +28,7 @@ export function generatePackageJson(params: {
         scripts: {
             start: 'npm run build && node dist/index.js',
             test: 'npm run build && npm run lint && npm run test:unittest',
-            build: 'swc ./src -d dist --strip-leading-paths',
+            build: 'tsc',
             clean: 'rm -rf dist types coverage',
             'test:unittest': 'c8 mocha src',
             lint: 'npm run lint:source && npm run lint:types',
