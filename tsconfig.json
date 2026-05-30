@@ -28,7 +28,9 @@
         "moduleResolution": "nodenext",
         "typeRoots": ["./node_modules/@types", "./@types"],
         "types": ["node"],
-        "esModuleInterop": true
+        "esModuleInterop": true,
+
+        "skipLibCheck": true
     },
     "include": ["src"],
     "exclude": ["**/*.spec.ts", "**/*.test.ts"],

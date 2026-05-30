@@ -55,7 +55,7 @@
         "@swc/cli": "^0.8.0",
         "@swc/core": "^1.15.18",
         "@types/chai": "^5.2.3",
-        "@types/inquirer-npm-name": "^3.0.7",
+        "@types/inquirer-npm-name": "^3.0.8",
         "@types/lodash": "^4.17.24",
         "@types/mocha": "^10.0.10",
         "@types/node": "^20.19.37",
@@ -74,7 +74,7 @@
         "typescript-eslint": "^8.57.0"
     },
     "dependencies": {
-        "inquirer": "^13.3.0",
+        "inquirer": "^14.0.1",
         "inquirer-npm-name": "^4.0.0",
         "lodash": "^4.17.23",
         "yargs": "^18.0.0"
