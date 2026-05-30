@@ -98,7 +98,7 @@ async function main() {
                 message: 'Project description',
             },
             {
-                type: 'list',
+                type: 'input',
                 name: 'keywords',
                 message: 'Package keywords (comma to split)',
                 filter(words: string) {
